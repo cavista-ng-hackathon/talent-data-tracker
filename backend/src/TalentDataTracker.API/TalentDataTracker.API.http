@@ -1,0 +1,6 @@
+@TalentDataTracker.API_HostAddress = http://localhost:5016
+
+GET {{TalentDataTracker.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
