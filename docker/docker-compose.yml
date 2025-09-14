@@ -11,28 +11,32 @@ services:
       - "5001:8081"
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - ConnectionStrings__DefaultConnection=Server=db;Database=TalentDataDB;User Id=sa;Password=YourStrong!Passw0rd;TrustServerCertificate=True;
+      - ConnectionStrings__DefaultConnection=Server=db;Port=3306;Database=TalentDataTrackerDB;User=appuser;Password=YRaUUR76!Whst5qaPO;Allow User Variables=true;
+      - HangfireSettings__Password=JA5p3r!25
+      - HangfireSettings__UserName=hf-admin
     depends_on:
       - db
     networks:
       - webnet
 
   db:
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    container_name: talent-data-sqlserver
+    image: mysql:8.0
+    container_name: talent-data-tracker-db
     environment:
-      ACCEPT_EULA: "Y"
-      MSSQL_SA_PASSWORD: "YourStrong!Passw0rd"
-      MSSQL_PID: "Developer"
-    volumes:
-      - sqlserver-data:/var/opt/mssql
+      - MYSQL_ROOT_PASSWORD=YRaUUR76!Whst5qaPO
+      - MYSQL_DATABASE=TalentDataTrackerDB
+      - MYSQL_USER=appuser
+      - MYSQL_PASSWORD=YRaUUR76!Whst5qaPO
     ports:
-      - "1433:1433"
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./mysql-init:/docker-entrypoint-initdb.d
     networks:
       - webnet
 
 volumes:
-  sqlserver-data:
+  mysql-data:
 
 networks:
   webnet:

@@ -11,6 +11,10 @@ WORKDIR /app
 
 # Copy csproj and restore
 COPY src/TalentDataTracker.API/TalentDataTracker.API.csproj src/TalentDataTracker.API/
+COPY src/TalentDataTracker.Application/TalentDataTracker.Application.csproj src/TalentDataTracker.Application/
+COPY src/TalentDataTracker.Domain/TalentDataTracker.Domain.csproj src/TalentDataTracker.Domain/
+COPY src/TalentDataTracker.Infrastructure/TalentDataTracker.Infrastructure.csproj src/TalentDataTracker.Infrastructure/
+
 RUN dotnet restore src/TalentDataTracker.API/TalentDataTracker.API.csproj
 
 COPY src ./src

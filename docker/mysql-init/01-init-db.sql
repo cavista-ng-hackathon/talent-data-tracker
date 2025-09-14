@@ -1,0 +1,4 @@
+CREATE DATABASE IF NOT EXISTS TalentDataTracker;
+CREATE USER 'appuser'@'%' IDENTIFIED BY 'YRaUUR76!Whst5qaPO';
+GRANT ALL PRIVILEGES ON TalentDataTracker.* TO 'appuser'@'%';
+FLUSH PRIVILEGES;
